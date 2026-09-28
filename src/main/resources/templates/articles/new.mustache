@@ -1,0 +1,20 @@
+{{>layouts/header}}
+<!--스프링부트가 폼 데이터를 DTO 필드에 자동으로 매칭(바인딩)하려면,-->
+<!--HTML의 name 속성과 DTO 필드 이름이 정확하게 일치해야 한다.-->
+<form class="container" action="/articles/create" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label"></label>
+        <input type="text" class="form-control" name="title">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea rows="3" class="form-control" name="content"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/articles">Back</a>
+</form>
+
+
+{{>layouts/footer}}
