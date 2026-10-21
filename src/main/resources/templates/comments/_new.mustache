@@ -1,0 +1,21 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <form>
+
+            <div id="mb-3">
+                <label for="" class="form-label">닉네임</label>
+                <input type="text" class="form-control form-control-sm" id="new-comment-nickname">
+            </div>
+
+            <div id="mb-3">
+                <label for="" class="form-label">내용</label>
+                <textarea class="form-control form-control-sm" rows="3" id="new-control-body"></textarea>
+            </div>
+                    {{#article}}
+                        <input type="hidden" id="new-comment-article-id" value="{{id}}">
+                    {{/article}}
+
+                    <button class="btn btn-outline-primary btn-sm" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+</div>
