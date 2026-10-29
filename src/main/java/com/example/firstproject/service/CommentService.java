@@ -35,6 +35,7 @@ public class CommentService {
         return dtos;
     }
 
+    @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
         // 게시글 조회 및 예외 처리
         Article article = articleRepository.findById(articleId)

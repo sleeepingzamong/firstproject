@@ -37,7 +37,7 @@ public class ArticleApiController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @PostMapping("/api/articles/{id}")
+    @PatchMapping("/api/articles/{id}")
     public ResponseEntity<Article> update(@PathVariable Long id, @RequestBody ArticleForm dto){
         Article updated = articleService.update(id, dto);
 
@@ -57,7 +57,7 @@ public class ArticleApiController {
 
     }
 
-    @PostMapping("/api/transaction-test/")
+    @PostMapping("/api/transaction-test")
     public ResponseEntity<List<Article>> transactionTest(@RequestBody List<ArticleForm> dtos){
         List<Article> createdList = articleService.createArticles(dtos);
         return (createdList != null) ?

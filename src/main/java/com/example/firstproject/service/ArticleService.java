@@ -42,7 +42,8 @@ public class ArticleService {
         // 2. 대상 Entity를 찾기
         Article target = articleRepository.findById(id).orElse(null);
         // 3. 잘못된 요청을 처리
-        if(target == null || id != article.getId()){
+        //    id는 Long(객체)이므로 != 가 아니라 equals()로 값을 비교해야 한다.
+        if(target == null || !id.equals(article.getId())){
             log.info("잘못된 요청! id:{}, article : {}",id,article.toString());
             return null;
         }
@@ -78,14 +79,11 @@ public class ArticleService {
 //            Article article = articlesList.get(i);
 //            articleRepository.save(article);
 //        }
+        articleList.stream().forEach(article -> articleRepository.save(article));
 
+        // 강제 예외 발생 -> @Transactional에 의해 위에서 저장한 데이터가 롤백된다.
         articleRepository.findById(-1L).orElseThrow(
                 () -> new IllegalArgumentException("결제 실패")
-
-        );
-        articleRepository.findById(-1L).orElseThrow(
-                () -> new IllegalArgumentException("결제 실패")
-
         );
         return articleList;
     }

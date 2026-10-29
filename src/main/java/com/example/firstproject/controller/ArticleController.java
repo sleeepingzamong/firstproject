@@ -75,6 +75,10 @@ public class ArticleController {
         log.info("id => "+id);
         // 1. id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
+        // 없는 게시글이면 목록 페이지로 돌려보낸다.
+        if(articleEntity == null){
+            return "redirect:/articles";
+        }
         log.info(articleEntity.toString());
         List<CommentDto> commentDtos = commentService.comments(id);
         // 2. 가져온 데이터를 모델이 등록
@@ -127,6 +131,9 @@ public class ArticleController {
     public String edit(@PathVariable Long id, Model model){
         //1. 수정할 데이터 가져오기
         Article articleEntity = articleRepository.findById(id).orElse(null);
+        if(articleEntity == null){
+            return "redirect:/articles";
+        }
 
         //2. 모델에 데이터 중복
         model.addAttribute("article", articleEntity);
